@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace singly_linked_list
 {
-    internal class Program
+    class Node
     {
-        static void Main(string[] args)
-        {
-        }
+        public int noMhs;
+        public string nama;
+        public Node next;
     }
 }
