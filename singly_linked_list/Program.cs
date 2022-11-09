@@ -21,7 +21,7 @@ namespace singly_linked_list
         {
             START = null;
         }
-
+        
         public void addNote()/*method untuk menambahkan sebuah Node ke dalam list*/
         {
             int nim;
@@ -36,7 +36,7 @@ namespace singly_linked_list
 
             if (START == null || nim <= START.noMhs)/* Node ditambahkan sebagai node pertama*/
             {
-                if ((START != null) && (nim == START.noMhs))
+                if((START != null) && (nim == START.noMhs))
                 {
                     Console.WriteLine("\nNomer mahasiswa sama tidak diijinkan\n");
                     return;
@@ -50,9 +50,9 @@ namespace singly_linked_list
             previous = START;
             current = START;
 
-            while ((current != null) && (nim >= current.noMhs))
+            while((current != null) && (nim >= current.noMhs))
             {
-                if (nim == current.noMhs)
+                if(nim == current.noMhs)
                 {
                     Console.WriteLine("\nNomer mahasiswa sama tidak di ijinkan\n");
                     return;
@@ -71,10 +71,10 @@ namespace singly_linked_list
         {
             Node previous, current;
             previous = current = null;
-            /*check apakah node yang di maksud ada di dalam list atau tidak*/
-            if (Search(nim, ref previous, ref current) == false)
+                /*check apakah node yang di maksud ada di dalam list atau tidak*/
+                if (Search(nim, ref previous, ref current) == false)
                 return false;
-            previous.next = current.next;
+                    previous.next = current.next;
             if (current == START)
                 START = START.next;
             return true;
@@ -112,11 +112,99 @@ namespace singly_linked_list
         public bool listEmpty()
         {
             if (START == null)
-                return true;
+                    return true;
             else
                 return false;
         }
+
+        class Program
+        {
+           static void Main(string[] args)
+            {
+                List obj = new List();
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("\nMenu");
+                        Console.WriteLine("1. Menambah data ke dalam List");
+                        Console.WriteLine("2. Menghapus data dari dalam List");
+                        Console.WriteLine("3. Melihat semua data didalam List");
+                        Console.WriteLine("4. Mencari sebuah data di dalam List");
+                        Console.WriteLine("5. Exit");
+                        Console.Write("\nMasukkan pilihan anda (1-5) : ");
+                        char ch = Convert.ToChar(Console.ReadLine());
+                        switch (ch)
+                        {
+                            case '1':
+                                {
+                                    obj.addNote();
+                                }
+                                break;
+                            case '2':
+                                {
+                                    if(obj.listEmpty())
+                                    {
+                                        Console.WriteLine("\nList Kosong");
+                                        break;
+                                    }
+                                    Console.Write("\nMasukkan nomor mahasiswa yang akan di hapus: ");
+                                    int nim = Convert.ToInt32(Console.ReadLine());
+                                    Console.WriteLine();
+                                    if (obj.delNode(nim) == false)
+                                        Console.WriteLine("\nData tidak ditemukan.");
+                                    else
+                                    Console.WriteLine("Data dengan nomor mahasiswa " + nim + " dihapus");
+                                }
+                                break;
+                            case '3':
+                                {
+                                    obj.traverse();
+                                }
+                                break;
+                            case '4':
+                                {
+                                    if(obj.listEmpty() ==  true)
+                                    {
+                                        Console.WriteLine("\nList Kosong !");
+                                        break;
+                                    }
+                                    Node previous, current;
+                                    previous = current = null;
+                                    Console.Write("\nMasukkan nomor mahasiswa  yang akan dicari: ");
+                                    int num = Convert.ToInt32(Console.ReadLine());
+                                    if (obj.Search(num, ref previous, ref current) == false)
+                                        Console.WriteLine("\nData tidak ditemukan");
+                                    else
+                                    {
+                                        Console.WriteLine("\nData Ketemu");
+                                        Console.WriteLine("\nNomor Mahasiswa: " + current.noMhs);
+                                        Console.WriteLine("\nNama: " + current.nama);
+                                    }
+                                }
+                                break;
+                            case '5':
+                                return;
+                            default:
+                                {
+                                    Console.WriteLine("\nPilihan tidak valid");
+                                    break;
+                                }
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("\nCheck nilai yang anda masukkan.");
+                    }
+                }
+            }
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+        }
     }
 }
-
-        
